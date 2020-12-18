@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "antiantixray",
+  "version": "1.0.0",
+  "environment": "client",
+  "authors": [
+    "ConstantinDev"
+  ],
+  "entrypoints": {
+    "client": [
+      "me.constantindev.antiantixray.AntiAntiXray"
+    ]
+  },
+  "name": "AntiAntiXray",
+  "description": "Defeats Anti Xray",
+  "contact": {
+    "email": "constantin.chris10@gmail.com",
+    "homepage": "https://constantindev.github.io"
+  },
+  "license": "GPL 2.0",
+  "mixins": [
+    "antiantixray.mixins.json"
+  ]
+}
