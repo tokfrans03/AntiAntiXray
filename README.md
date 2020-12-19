@@ -1,13 +1,16 @@
 # AntiAntiXray
 For the annoying server owners that add an anti xray plugin.
 
+## Notice
+For every plugin dev reading this, you basically cant fix this unless you want everyone on the server to gain riches off fake blocks that suddently become real ;)
+
 ## Usage
 To scan nearby blocks in selected radius, press `G` ingame.
 
 To remove a block for testing, creating a ghost block, press `V` ingame.
 
 ## Installing
-1. Download the newest version from build/libs
+1. Download the newest version from build/libs (or click [here](https://github.com/AriliusClient/AntiAntiXray/raw/master/build/libs/AntiAntixray-1.0.jar))
 2. Put it into your mods folder in your fabric installation
 3. Enjoy
 
@@ -33,6 +36,9 @@ Sets delay between block packets (Default: 0)
 #### Example
 `@aax setdelay 10` - Sets delay to 10 (Recommended delay)
 
-
-## Notice
-For every plugin dev reading this, you basically cant fix this unless you want everyone on the server to gain riches off fake blocks that suddently become real ;)
+### Cancel
+Cancels every refreshing job currently active
+### Parameters
+None
+#### Example
+`@aax cancel` - Cancels every job
