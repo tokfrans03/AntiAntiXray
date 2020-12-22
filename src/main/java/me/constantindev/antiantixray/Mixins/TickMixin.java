@@ -48,6 +48,7 @@ public class TickMixin {
             String[] args = msg.substring(4).trim().split(" +");
             String cmd = args[0].toLowerCase();
             switch (cmd) {
+                case "r":
                 case "setradius":
                     if (args.length < 2) {
                         assert MinecraftClient.getInstance().player != null;
@@ -67,6 +68,7 @@ public class TickMixin {
                     assert MinecraftClient.getInstance().player != null;
                     MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new radius to " + newradI), false);
                     break;
+                case "d":
                 case "setdelay":
                     if (args.length < 2) {
                         assert MinecraftClient.getInstance().player != null;
