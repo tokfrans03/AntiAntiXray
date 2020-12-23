@@ -7,4 +7,5 @@ public class Config {
     public static long delay = 0;
     public static Manager cmdmanager = new Manager();
     public static boolean scanAll = false;
+    public static boolean auto = false;
 }

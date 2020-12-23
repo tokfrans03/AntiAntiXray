@@ -3,6 +3,7 @@ package me.constantindev.antiantixray.Mixins;
 import me.constantindev.antiantixray.AntiAntiXray;
 import me.constantindev.antiantixray.Commands.Base;
 import me.constantindev.antiantixray.Etc.Config;
+import me.constantindev.antiantixray.Etc.Logger;
 import me.constantindev.antiantixray.Etc.RefreshingJob;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,6 +23,8 @@ import java.util.List;
 
 @Mixin(ClientPlayerEntity.class)
 public class TickMixin {
+
+    public BlockPos old;
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
@@ -59,7 +62,24 @@ public class TickMixin {
                 }
             }
         }
+
+        if (Config.auto) {
+            try {
+            BlockPos pos = MinecraftClient.getInstance().player.getBlockPos();
+
+            if (pos != old) {
+                AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
+                Logger.info("Scanning new pos: " + pos.toShortString());
+            }
+            old = pos;
+
+            } catch (NullPointerException e) {
+                Logger.info("Null Error");
+            }
+        }
     }
+
+
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     public void sendChatMessage(String msg, CallbackInfo ci) {
