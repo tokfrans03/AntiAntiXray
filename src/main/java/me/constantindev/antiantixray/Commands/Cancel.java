@@ -4,7 +4,7 @@ import me.constantindev.antiantixray.AntiAntiXray;
 
 public class Cancel extends Base {
     public Cancel() {
-        super("Cancel", new String[]{"c", "cancel", "abort"}, "Aborts all current jobs");
+        super("Cancel", new String[]{"c", "cancel", "abort", "s", "stop"}, "Aborts all current jobs");
     }
 
     @Override

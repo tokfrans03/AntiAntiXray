@@ -13,6 +13,7 @@ public class Manager {
         c.add(new SetDelay());
         c.add(new SetRadius());
         c.add(new ScanAll());
+        c.add(new auto());
     }
 
     public List<Base> get() {
