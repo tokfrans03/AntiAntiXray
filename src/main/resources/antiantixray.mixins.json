@@ -1,4 +1,6 @@
 {
   "package": "me.constantindev.antiantixray.Mixins",
-  "client": ["TickMixin"]
+  "client": [
+    "TickMixin"
+  ]
 }
