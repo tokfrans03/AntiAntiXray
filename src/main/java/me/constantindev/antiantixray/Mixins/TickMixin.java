@@ -25,6 +25,7 @@ import java.util.List;
 public class TickMixin {
 
     public BlockPos old;
+    public int movedblocks;
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
@@ -68,8 +69,13 @@ public class TickMixin {
             BlockPos pos = MinecraftClient.getInstance().player.getBlockPos();
 
             if (pos != old) {
-                AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
-                Logger.info("Scanning new pos: " + pos.toShortString());
+                movedblocks++;
+
+                if (movedblocks > Config.movethreshhold &&  AntiAntiXray.jobs.size() == 0){
+                    AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
+                    Logger.info("Scanning new pos: " + pos.toShortString());
+                    movedblocks = 0;
+                }
             }
             old = pos;
 
