@@ -14,6 +14,7 @@ public class Manager {
         c.add(new SetRadius());
         c.add(new ScanAll());
         c.add(new auto());
+        c.add(new movethreshold());
     }
 
     public List<Base> get() {

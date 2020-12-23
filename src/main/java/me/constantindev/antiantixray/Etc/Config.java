@@ -8,4 +8,5 @@ public class Config {
     public static Manager cmdmanager = new Manager();
     public static boolean scanAll = false;
     public static boolean auto = false;
+    public static int movethreshhold = 5;
 }
