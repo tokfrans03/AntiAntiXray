@@ -1,25 +1,27 @@
 package me.constantindev.antiantixray.Etc;
 
 import me.constantindev.antiantixray.GUI.ProgressBar;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.OreBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.OreBlock;
 
 public class Runner implements Runnable {
     boolean isRunning = true;
     long delay;
     int rad;
     ProgressBar pbar;
+
     public Runner(int rad, long delay, ProgressBar pbar) {
         this.rad = rad;
         this.delay = delay;
         this.pbar = pbar;
     }
+
     @Override
     public void run() {
         ClientPlayNetworkHandler conn = MinecraftClient.getInstance().getNetworkHandler();
@@ -29,7 +31,7 @@ public class Runner implements Runnable {
 
 
         // Blocks that aren't ores but still needs to be checked
-        Block[] checkblocks = {Blocks.OBSIDIAN, Blocks.CLAY, Blocks.MOSSY_COBBLESTONE, Blocks.GRAVEL };
+        Block[] checkblocks = {Blocks.OBSIDIAN, Blocks.CLAY, Blocks.MOSSY_COBBLESTONE, Blocks.GRAVEL};
 
         for (int cx = -rad; cx <= rad; cx++) {
             for (int cy = -rad; cy <= rad; cy++) {
@@ -40,18 +42,18 @@ public class Runner implements Runnable {
 
                     Block block = MinecraftClient.getInstance().player.world.getBlockState(currblock).getBlock();
 
-                    boolean good = false; // cool for else man
+                    boolean good = Config.scanAll; // cool for else man
 
                     // only check if block is a ore or in checkblocks (obsidian for example)
                     for (int i = 0; i < checkblocks.length; i++) {
-                        if (block.equals(checkblocks[i]) || block instanceof OreBlock){
+                        if (block.equals(checkblocks[i]) || block instanceof OreBlock) {
                             //Logger.info(block.toString() + " Is in checkbloks or a ore");
                             good = true;
                             break;
                         }
                     }
 
-                    if (!good){
+                    if (!good) {
                         continue;
                     }
 

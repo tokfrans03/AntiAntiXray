@@ -1,8 +1,12 @@
 package me.constantindev.antiantixray.Mixins;
 
 import me.constantindev.antiantixray.AntiAntiXray;
+import me.constantindev.antiantixray.Commands.Base;
 import me.constantindev.antiantixray.Etc.Config;
 import me.constantindev.antiantixray.Etc.RefreshingJob;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.text.Text;
@@ -23,7 +27,7 @@ public class TickMixin {
     public void tick(CallbackInfo ci) {
         List<RefreshingJob> nl = new ArrayList<>();
         AntiAntiXray.jobs.forEach(refreshingJob -> {
-            if(!refreshingJob.progress.done) {
+            if (!refreshingJob.progress.done) {
                 nl.add(refreshingJob);
             }
         });
@@ -34,10 +38,26 @@ public class TickMixin {
             AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
         }
         if (AntiAntiXray.removeBlockBeta.isPressed()) {
-            assert MinecraftClient.getInstance().crosshairTarget != null;
-            BlockPos b2r = ((BlockHitResult) MinecraftClient.getInstance().crosshairTarget).getBlockPos();
-            assert MinecraftClient.getInstance().player != null;
-            MinecraftClient.getInstance().player.world.removeBlock(b2r, false);
+            /*
+             * */
+            for (int cx = -3; cx <= 3; cx++) {
+                for (int cy = -3; cy <= 3; cy++) {
+                    for (int cz = -3; cz <= 3; cz++) {
+                        assert MinecraftClient.getInstance().crosshairTarget != null;
+                        BlockPos b2r = ((BlockHitResult) MinecraftClient.getInstance().crosshairTarget).getBlockPos();
+
+                        assert MinecraftClient.getInstance().player != null;
+                        //BlockState a = MinecraftClient.getInstance().player.world.getBlockState(b2r.add(cx,cy,cz));
+
+                        Block s = Block.getBlockFromItem(MinecraftClient.getInstance().player.inventory.getMainHandStack().getItem());
+                        BlockState b = Blocks.AIR.getDefaultState();
+                        if (s != null) b = s.getDefaultState();
+
+                        MinecraftClient.getInstance().player.world.setBlockState(b2r.add(cx,cy,cz),b);
+                        //MinecraftClient.getInstance().player.world.removeBlock(b2r.add(cx, cy, cz), false);
+                    }
+                }
+            }
         }
     }
 
@@ -47,57 +67,8 @@ public class TickMixin {
             ci.cancel();
             String[] args = msg.substring(4).trim().split(" +");
             String cmd = args[0].toLowerCase();
-            switch (cmd) {
-                case "r":
-                case "setradius":
-                    if (args.length < 2) {
-                        assert MinecraftClient.getInstance().player != null;
-                        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a number as argument."), false);
-                        break;
-                    }
-                    String newrad = args[1];
-                    int newradI;
-                    try {
-                        newradI = Integer.parseInt(newrad);
-                    } catch (Exception ex) {
-                        assert MinecraftClient.getInstance().player != null;
-                        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a VALID number as argument."), false);
-                        break;
-                    }
-                    Config.rad = newradI;
-                    assert MinecraftClient.getInstance().player != null;
-                    MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new radius to " + newradI), false);
-                    break;
-                case "d":
-                case "setdelay":
-                    if (args.length < 2) {
-                        assert MinecraftClient.getInstance().player != null;
-                        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a number as argument."), false);
-                        break;
-                    }
-                    String newdelay = args[1];
-                    long newdelayI;
-                    try {
-                        newdelayI = Long.parseLong(newdelay);
-                    } catch (Exception ex) {
-                        assert MinecraftClient.getInstance().player != null;
-                        MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a VALID number as argument."), false);
-                        break;
-                    }
-                    Config.delay = newdelayI;
-                    assert MinecraftClient.getInstance().player != null;
-                    MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set new delay to " + newdelayI), false);
-                    break;
-                case "cancel":
-                    AntiAntiXray.jobs.forEach(refreshingJob -> {
-                        refreshingJob.cancel();
-                    });
-                    break;
-                default:
-                    assert MinecraftClient.getInstance().player != null;
-                    MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] That command kind of does not exist"), false);
-                    break;
-            }
+            Base cmd2r = Config.cmdmanager.getByName(cmd);
+            cmd2r.run(args);
         }
     }
 }

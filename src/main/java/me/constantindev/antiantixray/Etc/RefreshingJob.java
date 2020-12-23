@@ -6,6 +6,7 @@ public class RefreshingJob {
     public ProgressBar progress;
     public Runner refresher;
     public Thread runner;
+
     public RefreshingJob(Runner refresher, ProgressBar pbar) {
         this.refresher = refresher;
         this.progress = pbar;
@@ -13,6 +14,7 @@ public class RefreshingJob {
         this.runner.start();
 
     }
+
     public void cancel() {
         refresher.isRunning = false;
         this.progress.done = true;
