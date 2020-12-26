@@ -15,6 +15,7 @@ public class Manager {
         c.add(new ScanAll());
         c.add(new auto());
         c.add(new movethreshold());
+        c.add(new optimize());
     }
 
     public List<Base> get() {
