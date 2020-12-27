@@ -3,7 +3,6 @@ package me.constantindev.antiantixray.Etc;
 import me.constantindev.antiantixray.GUI.ProgressBar;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.OreBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
@@ -31,7 +30,7 @@ public class Runner implements Runnable {
 
 
         // Blocks that aren't ores but still needs to be checked
-        Block[] checkblocks = {Blocks.OBSIDIAN, Blocks.CLAY, Blocks.MOSSY_COBBLESTONE, Blocks.GRAVEL};
+        Block[] checkblocks = Config.checkblocks;
 
         for (int cx = -rad; cx <= rad; cx++) {
             for (int cy = -rad; cy <= rad; cy++) {
@@ -46,7 +45,7 @@ public class Runner implements Runnable {
 
                     // only check if block is a ore or in checkblocks (obsidian for example)
                     for (int i = 0; i < checkblocks.length; i++) {
-                        if (block.equals(checkblocks[i]) || block instanceof OreBlock) {
+                        if (block.equals(checkblocks[i])) {
                             //Logger.info(block.toString() + " Is in checkbloks or a ore");
                             good = true;
                             break;
