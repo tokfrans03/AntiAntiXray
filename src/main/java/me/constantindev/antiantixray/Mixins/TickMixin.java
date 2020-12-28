@@ -36,12 +36,12 @@ public class TickMixin {
             }
         });
         AntiAntiXray.jobs = nl;
-        if (AntiAntiXray.rvn.wasPressed()) {
+        if (AntiAntiXray.rvn.checkPressed()) {
             assert MinecraftClient.getInstance().player != null;
             MinecraftClient.getInstance().player.sendMessage(Text.of("Refreshing blocks..."), true);
             AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
         }
-        if (AntiAntiXray.removeBlockBeta.isPressed()) {
+        if (AntiAntiXray.removeBlockBeta.checkPressed()) {
             /*
              * */
             for (int cx = -3; cx <= 3; cx++) {
@@ -57,7 +57,7 @@ public class TickMixin {
                         BlockState b = Blocks.AIR.getDefaultState();
                         if (s != null) b = s.getDefaultState();
 
-                        MinecraftClient.getInstance().player.world.setBlockState(b2r.add(cx,cy,cz),b);
+                        MinecraftClient.getInstance().player.world.setBlockState(b2r.add(cx, cy, cz), b);
                         //MinecraftClient.getInstance().player.world.removeBlock(b2r.add(cx, cy, cz), false);
                     }
                 }
@@ -66,25 +66,24 @@ public class TickMixin {
 
         if (Config.auto) {
             try {
-            BlockPos pos = MinecraftClient.getInstance().player.getBlockPos();
+                BlockPos pos = MinecraftClient.getInstance().player.getBlockPos();
 
-            if (pos != old) {
-                movedblocks++;
+                if (pos != old) {
+                    movedblocks++;
 
-                if (movedblocks > Config.movethreshhold &&  AntiAntiXray.jobs.size() == 0){
-                    AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
-                    Logger.info("Scanning new pos: " + pos.toShortString());
-                    movedblocks = 0;
+                    if (movedblocks > Config.movethreshhold && AntiAntiXray.jobs.size() == 0) {
+                        AntiAntiXray.revealNewBlocks(Config.rad, Config.delay);
+                        Logger.info("Scanning new pos: " + pos.toShortString());
+                        movedblocks = 0;
+                    }
                 }
-            }
-            old = pos;
+                old = pos;
 
             } catch (NullPointerException e) {
                 Logger.info("Null Error");
             }
         }
     }
-
 
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)

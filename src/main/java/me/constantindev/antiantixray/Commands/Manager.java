@@ -13,9 +13,10 @@ public class Manager {
         c.add(new SetDelay());
         c.add(new SetRadius());
         c.add(new ScanAll());
-        c.add(new auto());
-        c.add(new movethreshold());
-        c.add(new optimize());
+        c.add(new Auto());
+        c.add(new MoveTreshold());
+        c.add(new Optimize());
+        c.add(new SetBind());
     }
 
     public List<Base> get() {

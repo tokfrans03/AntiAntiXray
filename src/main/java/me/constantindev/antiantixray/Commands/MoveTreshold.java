@@ -4,8 +4,8 @@ import me.constantindev.antiantixray.Etc.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-public class movethreshold extends Base {
-    public movethreshold() {
+public class MoveTreshold extends Base {
+    public MoveTreshold() {
         super("movethreshold", new String[]{"movethreshold", "move", "m"}, "Set the radius");
     }
 

@@ -1,8 +1,6 @@
 package me.constantindev.antiantixray;
 
-import me.constantindev.antiantixray.Etc.Logger;
-import me.constantindev.antiantixray.Etc.RefreshingJob;
-import me.constantindev.antiantixray.Etc.Runner;
+import me.constantindev.antiantixray.Etc.*;
 import me.constantindev.antiantixray.GUI.ProgressBar;
 import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.MinecraftClient;
@@ -11,11 +9,12 @@ import net.minecraft.client.options.KeyBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_G;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_M;
 
 public class AntiAntiXray implements ClientModInitializer {
-    public static KeyBinding rvn = new KeyBinding("key.aax.refresh", GLFW_KEY_G, "key.categories.aax");
-    public static KeyBinding removeBlockBeta = new KeyBinding("key.aax.remove", GLFW_KEY_M, "key.categories.aax");
+    public static KeyBind rvn = new KeyBind(Config.kcScan);
+    public static KeyBind removeBlockBeta = new KeyBind(Config.kcRemove);
     public static List<RefreshingJob> jobs = new ArrayList<>();
 
     public static Thread revealNewBlocks(int rad, long delayInMS) {

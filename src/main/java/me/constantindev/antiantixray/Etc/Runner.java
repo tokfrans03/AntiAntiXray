@@ -2,7 +2,6 @@ package me.constantindev.antiantixray.Etc;
 
 import me.constantindev.antiantixray.GUI.ProgressBar;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;

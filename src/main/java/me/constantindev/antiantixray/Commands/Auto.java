@@ -4,8 +4,8 @@ import me.constantindev.antiantixray.Etc.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-public class auto extends Base {
-    public auto() {
+public class Auto extends Base {
+    public Auto() {
         super("auto", new String[]{"auto", "a"}, "Sets whether to continually scan surroundings. WARNING: Be sure to only have this enabled when not moving too much");
     }
 

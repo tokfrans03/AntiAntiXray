@@ -6,8 +6,8 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-public class optimize extends Base {
-    public optimize() {
+public class Optimize extends Base {
+    public Optimize() {
         super("optimize", new String[]{"optimize", "o"}, "Optimizes for either diamond or redstone ore");
     }
 
@@ -19,7 +19,7 @@ public class optimize extends Base {
             return;
         }
         String newblock = args[1];
-        switch (newblock){
+        switch (newblock) {
             case "diamond":
                 Config.checkblocks = new Block[]{Blocks.DIAMOND_ORE};
                 MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to diamond"), false);
