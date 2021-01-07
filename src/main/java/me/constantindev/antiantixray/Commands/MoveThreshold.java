@@ -4,9 +4,9 @@ import me.constantindev.antiantixray.Etc.Config;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
-public class MoveTreshold extends Base {
-    public MoveTreshold() {
-        super("movethreshold", new String[]{"movethreshold", "move", "m"}, "Set the radius");
+public class MoveThreshold extends Base {
+    public MoveThreshold() {
+        super("MoveThreshold", new String[]{"movethreshold", "move", "m"}, "Set the radius");
     }
 
     @Override

@@ -19,9 +19,11 @@ public class Optimize extends Base {
             return;
         }
         String newblock = args[1];
+        assert MinecraftClient.getInstance().player != null;
         switch (newblock) {
             case "diamond":
                 Config.checkblocks = new Block[]{Blocks.DIAMOND_ORE};
+
                 MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to diamond"), false);
                 break;
 

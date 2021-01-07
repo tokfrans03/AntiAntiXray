@@ -1,6 +1,7 @@
 package me.constantindev.antiantixray.Commands;
 
 import me.constantindev.antiantixray.AntiAntiXray;
+import me.constantindev.antiantixray.Etc.RefreshingJob;
 
 public class Cancel extends Base {
     public Cancel() {
@@ -9,9 +10,7 @@ public class Cancel extends Base {
 
     @Override
     public void run(String[] args) {
-        AntiAntiXray.jobs.forEach(refreshingJob -> {
-            refreshingJob.cancel();
-        });
+        AntiAntiXray.jobs.forEach(RefreshingJob::cancel);
         super.run(args);
     }
 }

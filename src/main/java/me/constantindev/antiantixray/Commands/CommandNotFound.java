@@ -10,6 +10,7 @@ public class CommandNotFound extends Base {
 
     @Override
     public void run(String[] args) {
+        assert MinecraftClient.getInstance().player != null;
         MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Command not found. Please refer to help command"), false);
         super.run(args);
     }

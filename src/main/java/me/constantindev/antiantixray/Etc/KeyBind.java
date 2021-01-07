@@ -6,16 +6,15 @@ import net.minecraft.client.util.InputUtil;
 public class KeyBind {
     int kc;
     boolean flag3 = false;
+
     public KeyBind(int kc) {
         this.kc = kc;
     }
 
-    public int getKeyCode() {
-        return kc;
-    }
     public void setKeyCode(int kc) {
         this.kc = kc;
     }
+
     public boolean checkPressed() {
         if (MinecraftClient.getInstance().currentScreen != null) return false;
         boolean flag2 = InputUtil.isKeyPressed(MinecraftClient.getInstance().getWindow().getHandle(), kc);

@@ -20,6 +20,7 @@ public class Runner implements Runnable {
         this.pbar = pbar;
     }
 
+    @SuppressWarnings("BusyWait")
     @Override
     public void run() {
         ClientPlayNetworkHandler conn = MinecraftClient.getInstance().getNetworkHandler();
@@ -43,8 +44,8 @@ public class Runner implements Runnable {
                     boolean good = Config.scanAll; // cool for else man
 
                     // only check if block is a ore or in checkblocks (obsidian for example)
-                    for (int i = 0; i < checkblocks.length; i++) {
-                        if (block.equals(checkblocks[i])) {
+                    for (Block checkblock : checkblocks) {
+                        if (block.equals(checkblock)) {
                             //Logger.info(block.toString() + " Is in checkbloks or a ore");
                             good = true;
                             break;

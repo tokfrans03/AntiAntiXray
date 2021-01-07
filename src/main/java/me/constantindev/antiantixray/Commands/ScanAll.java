@@ -12,6 +12,7 @@ public class ScanAll extends Base {
     @Override
     public void run(String[] args) {
         Config.scanAll = !Config.scanAll;
+        assert MinecraftClient.getInstance().player != null;
         MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] " + (Config.scanAll ? "En" : "Dis") + "abled scanning all blocks."), false);
         super.run(args);
     }

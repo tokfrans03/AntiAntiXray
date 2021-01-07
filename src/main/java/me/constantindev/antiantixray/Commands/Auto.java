@@ -12,6 +12,7 @@ public class Auto extends Base {
     @Override
     public void run(String[] args) {
         Config.auto = !Config.auto;
+        assert MinecraftClient.getInstance().player != null;
         MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] " + (Config.auto ? "En" : "Dis") + "abled continually scanning."), false);
         super.run(args);
     }

@@ -14,7 +14,9 @@ public class SetBind extends Base {
 
     @Override
     public void run(String[] args) {
+        assert MinecraftClient.getInstance().player != null;
         if (args.length < 3) {
+
             MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide the property you want to chage as 2nd argument and the key to change it to as 3rd argument."), false);
             return;
         }
@@ -27,7 +29,7 @@ public class SetBind extends Base {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set scanning keybind to "+((char)kc)),false);
+                MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set scanning keybind to " + ((char) kc)), false);
                 break;
             case "remove":
                 AntiAntiXray.removeBlockBeta.setKeyCode(kc);
@@ -36,7 +38,7 @@ public class SetBind extends Base {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set removing keybind to "+((char)kc)),false);
+                MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set removing keybind to " + ((char) kc)), false);
                 break;
             default:
                 MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Invalid property. Please choose either \"scan\" or \"remove\"."), false);

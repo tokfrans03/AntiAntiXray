@@ -6,9 +6,6 @@ import net.minecraft.block.Blocks;
 
 import java.io.IOException;
 
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_G;
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_V;
-
 public class Config {
     public static int rad = 5;
     public static long delay = 10;

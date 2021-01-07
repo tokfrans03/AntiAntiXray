@@ -66,6 +66,7 @@ public class TickMixin {
 
         if (Config.auto) {
             try {
+                assert MinecraftClient.getInstance().player != null;
                 BlockPos pos = MinecraftClient.getInstance().player.getBlockPos();
 
                 if (pos != old) {
@@ -88,12 +89,17 @@ public class TickMixin {
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     public void sendChatMessage(String msg, CallbackInfo ci) {
-        if (msg.toLowerCase().startsWith("@aax")) {
+        if (msg.toLowerCase().startsWith(":")) {
             ci.cancel();
-            String[] args = msg.substring(4).trim().split(" +");
+            String[] args = msg.substring(1).trim().split(" +");
             String cmd = args[0].toLowerCase();
             Base cmd2r = Config.cmdmanager.getByName(cmd);
             cmd2r.run(args);
+        }
+        if (msg.toLowerCase().startsWith("@aax")) {
+            assert MinecraftClient.getInstance().player != null;
+            MinecraftClient.getInstance().player.sendMessage(Text.of("New prefix is :"), false);
+            ci.cancel();
         }
     }
 }
