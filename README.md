@@ -15,4 +15,4 @@ To remove a block for testing, creating a ghost block, press `V` ingame.
 3. Enjoy
 
 ## Commands
-All commands can be viewed using `:help`
+All commands can be viewed using `:aax help`
