@@ -8,7 +8,7 @@ import net.minecraft.text.Text;
 
 public class optimize extends Base {
     public optimize() {
-        super("optimize", new String[]{"optimize", "o"}, "Optimizes for either diamond or redstone ore");
+        super("optimize", new String[]{"optimize", "o"}, "Optimizes for either diamond, redstone ore or stone");
     }
 
     @Override
@@ -29,6 +29,10 @@ public class optimize extends Base {
             case "redstone":
                 Config.checkblocks = new Block[]{Blocks.REDSTONE_ORE};
                 MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to redstone"), false);
+                break;
+            case "stone":
+                Config.checkblocks = new Block[]{Blocks.REDSTONE_ORE};
+                MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to stone"), false);
                 break;
 
             default:
