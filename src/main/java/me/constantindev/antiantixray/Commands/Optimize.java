@@ -8,7 +8,7 @@ import net.minecraft.text.Text;
 
 public class Optimize extends Base {
     public Optimize() {
-        super("optimize", new String[]{"optimize", "o"}, "Optimizes for either diamond or redstone ore");
+        super("optimize", new String[]{"optimize", "o"}, "Optimizes for either diamond, redstone ore or stone");
     }
 
     @Override
