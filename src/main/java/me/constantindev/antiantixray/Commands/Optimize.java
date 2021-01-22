@@ -15,7 +15,7 @@ public class Optimize extends Base {
     public void run(String[] args) {
         if (args.length < 2) {
             assert MinecraftClient.getInstance().player != null;
-            MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a ore block to optimize for as argument. Currently: diamond or redstone"), false);
+            MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Please provide a ore block to optimize for as argument. Currently: diamond, redstone ore or stone"), false);
             return;
         }
         String newblock = args[1];
@@ -31,6 +31,11 @@ public class Optimize extends Base {
             case "redstone":
                 Config.checkblocks = new Block[]{Blocks.REDSTONE_ORE};
                 MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to redstone"), false);
+                break;
+
+            case "stone":
+                Config.checkblocks = new Block[]{Blocks.REDSTONE_ORE};
+                MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to stone"), false);
                 break;
 
             default:
