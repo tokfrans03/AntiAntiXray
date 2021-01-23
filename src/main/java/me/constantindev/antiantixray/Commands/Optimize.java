@@ -34,7 +34,7 @@ public class Optimize extends Base {
                 break;
 
             case "stone":
-                Config.checkblocks = new Block[]{Blocks.REDSTONE_ORE};
+                Config.checkblocks = new Block[]{Blocks.STONE};
                 MinecraftClient.getInstance().player.sendMessage(Text.of("[AAX] Set optimization to stone"), false);
                 break;
 
